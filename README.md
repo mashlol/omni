@@ -8,7 +8,7 @@ npm install omni
 
 
 # Usage
-```
+```javascript
 var omni = require("omni");
 var collection = new omni.Collection([
     new omni.Model({
@@ -24,7 +24,7 @@ The `.listen(port, collections, events)` method takes in a port, a list of insta
 
 
 # Models
-```
+```javascript
 var omni = require("omni");
 
 var Player = omni.Model.extend({
@@ -58,7 +58,7 @@ A model is essentially the same as a model in Backbone, however, a `name` proper
 
 
 # Collections
-```
+```javascript
 var omni = require("omni");
 
 var Players = omni.Collection.extend({
@@ -70,7 +70,7 @@ A collection just requires the additional property `name`, everything else is th
 
 
 # Events
-```
+```javascript
 var loginEvent = {
     run: function (connection, collections, data) {
         if (data.name && data.password) {
