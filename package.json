@@ -2,11 +2,11 @@
   "author": "Kevin Bedi",
   "name": "omni",
   "description": "Omni.js - Framework for simple javascript applications",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
-    "url": ""
+    "type": "git", "url": "https://github.com/Mashlol/omni"
   },
-  "main": "./lib/spt",
+  "main": "./lib/omni",
   "dependencies": {
     "socket.io": "",
     "express": "",
@@ -17,5 +17,8 @@
   "engines": {
     "node": "*"
   },
-  "readme": "README.md"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT"
 }
