@@ -10,7 +10,8 @@
   "dependencies": {
     "socket.io": "",
     "express": "",
-    "backbone": ""
+    "backbone": "",
+    "ejs": ""
   },
   "devDependencies": {},
   "optionalDependencies": {},
