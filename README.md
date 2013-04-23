@@ -14,14 +14,14 @@ Visit https://github.com/Mashlol/omni-chat-example to see a very simple of examp
 
 # Usage
 ```javascript
-var omni = require("omni");
-var collection = new omni.Collection([
-    new omni.Model({
+var Omni = require("omni");
+var collection = new Omni.Collection([
+    new Omni.Model({
         name: "foo",
         bar: "baz"
     })
 ]);
-omni.listen(3000, {
+Omni.listen(3000, {
     collection: collection
 });
 ```
@@ -30,9 +30,9 @@ The `.listen(port, collections, events)` method takes in a port, a list of insta
 
 # Models
 ```javascript
-var omni = require("omni");
+var Omni = require("omni");
 
-var Player = omni.Model.extend({
+var Player = Omni.Model.extend({
     defaults: {
         online: false,
         x: 0,
@@ -63,9 +63,9 @@ A model is essentially the same as a model in Backbone, however a `readPermissio
 
 # Collections
 ```javascript
-var omni = require("omni");
+var Omni = require("omni");
 
-var Players = omni.Collection.extend({
+var Players = Omni.Collection.extend({
     model: Player,
     createPermission: function(connection) {
         return true;
