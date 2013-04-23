@@ -1,10 +1,15 @@
 # Omni.js
-Omni.js is a framework designed to integrate with Backbone.js in order to give the client all the information possible.  The goal is to make writing server/client apps extremely simple.
+Omni.js is a framework designed to integrate with Backbone.js in order to make writing realtime web apps extremely simple.  Simply define models, collections, and events on the server side, and the server will automatically feed the client with all of the information that it has permission to see.  Then the client can modify any information, and if it has write permission, the server will propagate the data to all other clients who have read permission.
+
 
 # Installation
 ```sh
 npm install omni
 ```
+
+
+# Example App
+Visit https://github.com/Mashlol/omni-chat-example to see a very simple of example of how to use Omni.js effectively.
 
 
 # Usage
