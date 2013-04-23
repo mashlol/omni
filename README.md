@@ -33,7 +33,6 @@ The `.listen(port, collections, events)` method takes in a port, a list of insta
 var omni = require("omni");
 
 var Player = omni.Model.extend({
-    name: "Player",
     defaults: {
         online: false,
         x: 0,
@@ -59,7 +58,7 @@ var Player = omni.Model.extend({
     }
 });
 ```
-A model is essentially the same as a model in Backbone, however, a `name` property is required, and a `readPermission(connection, property)` and `writePermission(connection, property)` method can be supplied to determine whether or not there is permission to read or write to this model.
+A model is essentially the same as a model in Backbone, however a `readPermission(connection, property)` and `writePermission(connection, property)` method can be supplied to determine whether or not there is permission to read or write to this model.
 
 
 # Collections
@@ -67,11 +66,19 @@ A model is essentially the same as a model in Backbone, however, a `name` proper
 var omni = require("omni");
 
 var Players = omni.Collection.extend({
-    name: "Players",
-    model: Player
+    model: Player,
+    createPermission: function(connection) {
+        return true;
+    },
+    destroyPermission: function(connection) {
+        if (connection.player.get("admin")) {
+            return true;
+        }
+        return false;
+    }
 });
 ```
-A collection just requires the additional property `name`, everything else is the same as Backbone.js
+A collection is essentially the same collection as Backbone, however a `createPermission(connection)` and `destroyPermission(connection)` method can be supplied to determine whether or not there is permission to add or remove models to/from this collection.
 
 
 # Events
