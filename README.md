@@ -1,5 +1,5 @@
 # Omni.js
-Omni.js is a framework designed to integrate with Backbone.js in order to make writing realtime web apps extremely simple.  Simply define models, collections, and events on the server side, and the server will automatically feed the client with all of the information that it has permission to see.  Then the client can modify any information, and if it has write permission, the server will propagate the data to all other clients who have read permission.
+Omni.js is a framework designed to integrate with Backbone.js in order to make writing real-time web apps extremely simple.  Simply define models, collections, and events on the server side, and the server will automatically feed the client with all of the information that it has permission to see.  Then the client can modify any information, and if it has write permission, the server will propagate the data to all other clients who have read permission.
 
 
 # Installation
@@ -96,3 +96,35 @@ var loginEvent = {
 }
 ```
 Events allow for custom code to be run on the server when the client triggers the event.
+
+Events are passed into the `listen` method of Omni as a hash, such as `Omni.listen(1337, {collection: new Omni.Collection()}, {loginEvent: loginEvent});`.
+
+# Client
+Everything you should need should be readily available to access on the client.  Right now, Omni.js automatically serves the `public` folder of your app at the port you specify.  It also serves a client file (omni.js) at `/omni.js`.  The client requires socket.io and Backbone, and Backbone requires Underscore, so your `index.html` head might look something like:
+
+```html
+<head>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://underscorejs.org/underscore-min.js"></script>
+    <script src="http://backbonejs.org/backbone-min.js"></script>
+    <script src="/omni.js"></script>
+
+    <script src="./your-custom-script.js"></script>
+</head>
+```
+
+The omni.js file automatically gives you the following:
+
+`Omni.Collections (alias: window.Collections)` - All the collections you defined on the server and passed into the `listen` method are automatically available in the global `Collections` object on the client, provided they have permission to see it.  If I passed in a collection to the server with `Omni.listen(1337, {messages: new Omni.Collection()});`, I'd be able to access this collection on the client with `Collections.messages`.  Then I can do things like `Collections.messages.add({message: "Hello!"})` and the server will propagate this new message to all clients who have permission to see it.
+
+`Omni.trigger(eventName, args)` - This is how you trigger custom events.  Once you trigger this custom event, the server will execute the code that you wrote inside the `event hash` with the name `eventName`.  For example, with the `loginEvent` defined above, if the client sends `Omni.trigger("loginEvent", {name: "foo", password: "bar"});`, assuming a user with the name "foo" and password "bar" exists, it will set connection.player to that player model.  This allows for the server to change the permissions of this user now, maybe to allow him to modify his own model more freely, or grant admin access, or other actions.
+
+`Omni.ready(callback)` - You can call `Omni.ready()` any number of times, providing callbacks.  When Omni has downloaded the initial data from the server, these callbacks will be executed.  If you call `Omni.ready()` after Omni has already initialized, your callback will be called immediately.
+
+
+# License - MIT
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
