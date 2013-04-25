@@ -85,13 +85,18 @@ A collection is essentially the same collection as Backbone, however a `createPe
 ```javascript
 var loginEvent = {
     run: function (connection, collections, data) {
+        if (connection.player) {
+            return {error: "Already logged in."};
+        }
         if (data.name && data.password) {
             var player = collections.players.findWhere({name: data.name, password: data.password});
             if (player) {
                 connection.player = player;
                 console.log(player.get("name") + " logged in.");
+                return {success: "Logged in."};
             }
         }
+        return {error: "Incorrect username or password."};
     }
 }
 ```
@@ -117,7 +122,7 @@ The omni.js file automatically gives you the following:
 
 `Omni.Collections (alias: window.Collections)` - All the collections you defined on the server and passed into the `listen` method are automatically available in the global `Collections` object on the client, provided they have permission to see it.  If I passed in a collection to the server with `Omni.listen(1337, {messages: new Omni.Collection()});`, I'd be able to access this collection on the client with `Collections.messages`.  Then I can do things like `Collections.messages.add({message: "Hello!"})` and the server will propagate this new message to all clients who have permission to see it.
 
-`Omni.trigger(eventName, args)` - This is how you trigger custom events.  Once you trigger this custom event, the server will execute the code that you wrote inside the `event hash` with the name `eventName`.  For example, with the `loginEvent` defined above, if the client sends `Omni.trigger("loginEvent", {name: "foo", password: "bar"});`, assuming a user with the name "foo" and password "bar" exists, it will set connection.player to that player model.  This allows for the server to change the permissions of this user now, maybe to allow him to modify his own model more freely, or grant admin access, or other actions.
+`Omni.trigger(eventName, args, callback)` - This is how you trigger custom events.  Once you trigger this custom event, the server will execute the code that you wrote inside the `event hash` with the name `eventName`.  For example, with the `loginEvent` defined above, if the client sends `Omni.trigger("loginEvent", {name: "foo", password: "bar"});`, assuming a user with the name "foo" and password "bar" exists, it will set connection.player to that player model.  This allows for the server to change the permissions of this user now, maybe to allow him to modify his own model more freely, or grant admin access, or other actions.  The callback takes in a single parameter, which is the response hash.
 
 `Omni.ready(callback)` - You can call `Omni.ready()` any number of times, providing callbacks.  When Omni has downloaded the initial data from the server, these callbacks will be executed.  If you call `Omni.ready()` after Omni has already initialized, your callback will be called immediately.
 
