@@ -44,14 +44,14 @@ var Player = Omni.Model.extend({
     readPermission: function (connection, property) {
         if (property != undefined && property != "password" && this.get("online") || property == undefined) {
             return true;
-        } else if (connection != undefined && connection.player != null && connection.player == this) {
+        } else if (connection.player != null && connection.player == this) {
             return true;
         }
         return false;
     },
 
     writePermission: function (connection, property) {
-        if  (connection.player == this) {
+        if  (connection.player != null && connection.player == this) {
             return true;
         }
         return false;
@@ -59,6 +59,8 @@ var Player = Omni.Model.extend({
 });
 ```
 A model is essentially the same as a model in Backbone, however a `readPermission(connection, property)` and `writePermission(connection, property)` method can be supplied to determine whether or not there is permission to read or write to this model.
+
+The `readPermission()` method should return a value even if the `property` parameter is not passed in.  The result of the method should be whether or not ANY attributes will be available.  The method is called with only the `connection` parameter before checking each property individually, as if it returns false we won't need to iterate over all of the parameters.  The `connection` parameter should be always be passed in, however.
 
 
 # Collections
