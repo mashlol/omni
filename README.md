@@ -50,7 +50,7 @@ var Player = Omni.Model.extend({
         return false;
     },
 
-    writePermission: function (connection, property) {
+    writePermission: function (connection, property, value) {
         if  (connection.player != null && connection.player == this) {
             return true;
         }
@@ -58,7 +58,7 @@ var Player = Omni.Model.extend({
     }
 });
 ```
-A model is essentially the same as a model in Backbone, however a `readPermission(connection, property)` and `writePermission(connection, property)` method can be supplied to determine whether or not there is permission to read or write to this model.
+A model is essentially the same as a model in Backbone, however a `readPermission(connection, property)` and `writePermission(connection, property, value)` method can be supplied to determine whether or not there is permission to read or write to this model.
 
 The `readPermission()` method should return a value even if the `property` parameter is not passed in.  The result of the method should be whether or not ANY attributes will be available.  The method is called with only the `connection` parameter before checking each property individually, as if it returns false we won't need to iterate over all of the parameters.  The `connection` parameter should be always be passed in, however.
 
@@ -105,6 +105,8 @@ var loginEvent = {
 Events allow for custom code to be run on the server when the client triggers the event.
 
 Events are passed into the `listen` method of Omni as a hash, such as `Omni.listen(1337, {collection: new Omni.Collection()}, {loginEvent: loginEvent});`.
+
+Predefined Events: `connect`, and `disconnect`.  Any event passed in with these keys will be called automatically, and ignored in your `Omni.trigger()` calls on the client.  The third (data) parameter will not be passed in for these events.
 
 # Client
 Everything you should need should be readily available to access on the client.  Right now, Omni.js automatically serves the `public` folder of your app at the port you specify.  It also serves a client file (omni.js) at `/omni.js`.  The client requires socket.io and Backbone, and Backbone requires Underscore, so your `index.html` head might look something like:
