@@ -136,6 +136,15 @@ The omni.js file automatically gives you the following:
 `Omni.ready(callback)` - You can call `Omni.ready()` any number of times, providing callbacks.  When Omni has downloaded the initial data from the server, these callbacks will be executed.  If you call `Omni.ready()` after Omni has already initialized, your callback will be called immediately.
 
 
+# Changelogs
+
+v0.0.8
+
+* Add `connection.recheckAllPermissions()` method to recheck permissions and propagate all data for that connection.
+* Move `connect` event trigger to occur before Omni.js sends any data to the client.  This way you can modify the connection object to change the outcome of the data that ends up being propagated.
+
+
+
 # License - MIT
 
 Copyright © 2013 Kevin Bedi
