@@ -1,4 +1,6 @@
 # Omni.js
+![Omni.js](http://i.imgur.com/S1C8rDt.png)
+
 Omni.js is a framework designed to integrate with Backbone.js in order to make writing real-time web apps extremely simple.  Simply define models, collections, and events on the server side, and the server will automatically feed the client with all of the information that it has permission to see.  Then the client can modify any information, and if it has write permission, the server will propagate the data to all other clients who have read permission.
 
 
@@ -136,13 +138,19 @@ The omni.js file automatically gives you the following:
 `Omni.ready(callback)` - You can call `Omni.ready()` any number of times, providing callbacks.  When Omni has downloaded the initial data from the server, these callbacks will be executed.  If you call `Omni.ready()` after Omni has already initialized, your callback will be called immediately.
 
 
-# Changelogs
+# Contributing
+Feel free to contribute fixes, features or refactors.  Just fork & submit a pull request.
 
+
+# IRC
+Hop on `#omni.js` on `irc.freenode.net` to discuss Omni.js, or to ask questions.
+
+
+# Changelogs
 v0.0.8
 
 * Add `connection.recheckAllPermissions()` method to recheck permissions and propagate all data for that connection.
 * Move `connect` event trigger to occur before Omni.js sends any data to the client.  This way you can modify the connection object to change the outcome of the data that ends up being propagated.
-
 
 
 # License - MIT
