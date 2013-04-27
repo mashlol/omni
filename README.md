@@ -28,6 +28,10 @@ Omni.listen(3000, {
 The `.listen(port, collections, events)` method takes in a port, a list of instantiated collections, and a list of event objects.
 
 
+# Server Methods
+`connection.recheckAllPermissions()` - This method can be called on any `connection` object that is passed between the permissions and event methods, and will run through each collection and each model and check if there are any changes in the permissions, and push the changes to the client.  This is useful for instances where a change in one model might trigger some permission changes in another model or collection.  For example, if a user has permission to read all other users in the same "room" as him, and you change that users room, you need to call this event to propagate all the new players he might be able to see, and remove all the old players he can no longer see.  Note that this is a relatively intense method, use it wisely.
+
+
 # Models
 ```javascript
 var Omni = require("omni");
