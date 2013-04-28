@@ -11,7 +11,8 @@
     "socket.io": "",
     "express": "",
     "backbone": "",
-    "ejs": ""
+    "ejs": "",
+    "uglify-js": ""
   },
   "devDependencies": {},
   "optionalDependencies": {},
