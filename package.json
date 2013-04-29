@@ -8,11 +8,11 @@
   },
   "main": "./lib/omni",
   "dependencies": {
-    "socket.io": "",
-    "express": "",
-    "backbone": "",
-    "ejs": "",
-    "uglify-js": ""
+    "socket.io": "0.9.14",
+    "express": "3.2.0",
+    "backbone": "1.0.0",
+    "ejs": "0.8.3",
+    "uglify-js": "2.2.5"
   },
   "devDependencies": {},
   "optionalDependencies": {},
