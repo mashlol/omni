@@ -158,6 +158,12 @@ Hop on `#omni.js` on `irc.freenode.net` to discuss Omni.js, or to ask questions.
 
 
 # Changelogs
+v0.0.9
+
+* The client.js file is now served minified.
+* Added `Omni.on(eventName, callback)` on the client side.  Currently the only event is `recheckPermissions`, triggered when the server calls `connection.recheckAllPermissions()` on this client's connection.
+* Added `connection.connections` to the `connection` object so you can access other connections within events or permission methods.
+
 v0.0.8
 
 * Add `connection.recheckAllPermissions()` method to recheck permissions and propagate all data for that connection.
