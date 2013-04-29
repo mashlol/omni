@@ -2,7 +2,7 @@
   "author": "Kevin Bedi",
   "name": "omni",
   "description": "Omni.js - Javascript framework to easily build real-time web apps.",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "repository": {
     "type": "git", "url": "git://github.com/Mashlol/omni.git"
   },

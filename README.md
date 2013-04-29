@@ -158,6 +158,11 @@ Hop on `#omni.js` on `irc.freenode.net` to discuss Omni.js, or to ask questions.
 
 
 # Changelogs
+v0.0.10
+
+* Lock versions for dependencies
+* No longer use EJS to render the port into the client file, instead just use javascript to find the port.
+
 v0.0.9
 
 * The client.js file is now served minified.
