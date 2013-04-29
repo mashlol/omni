@@ -31,9 +31,18 @@ Omni.listen(3000, {
 The `.listen(port, collections, events)` method takes in a port, a list of instantiated collections, and a list of event objects.
 
 
-# Server Methods
+# Connection Properties
 `connection.recheckAllPermissions()` - This method can be called on any `connection` object that is passed between the permissions and event methods, and will run through each collection and each model and check if there are any changes in the permissions, and push the changes to the client.  This is useful for instances where a change in one model might trigger some permission changes in another model or collection.  For example, if a user has permission to read all other users in the same "room" as them, and you change that users room, you need to call this event to propagate all the new players they might be able to see, and remove all the old players they can no longer see.  Note that this is a relatively intense method, use it wisely.
 
+`connection.socket` - The raw socket.io socket object associated with this connection.
+
+`connection.connections` - Returns an object containing all of the other connection objects, where the key is the socket ID.  You can do things like:
+
+```javascript
+for (var x in connection.connections) {
+    connection.connections[x].socket.emit("myCustomEvent", {some: args});
+}
+```
 
 # Models
 ```javascript
@@ -136,6 +145,8 @@ The omni.js file automatically gives you the following:
 `Omni.trigger(eventName, args, callback)` - This is how you trigger custom events.  Once you trigger this custom event, the server will execute the code that you wrote inside the `event hash` with the name `eventName`.  For example, with the `loginEvent` defined above, if the client sends `Omni.trigger("loginEvent", {name: "foo", password: "bar"});`, assuming a user with the name "foo" and password "bar" exists, it will set connection.player to that player model.  This allows for the server to change the permissions of this user now, maybe to allow them to modify their own model more freely, or grant admin access, or other actions.  The callback takes in a single parameter, which is the response hash.
 
 `Omni.ready(callback)` - You can call `Omni.ready()` any number of times, providing callbacks.  When Omni has downloaded the initial data from the server, these callbacks will be executed.  If you call `Omni.ready()` after Omni has already initialized, your callback will be called immediately.
+
+`Omni.on(eventName, callback)` - Add a callback for a certain client sided event.  Currently the only event is `recheckPermissions`, triggered when the server calls `connection.recheckAllPermissions()` on this client's connection.
 
 
 # Contributing
