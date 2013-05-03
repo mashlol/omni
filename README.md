@@ -28,7 +28,9 @@ Omni.listen(3000, {
     collection: collection
 });
 ```
-The `.listen(port, collections, events)` method takes in a port, a list of instantiated collections, and a list of event objects.
+The `.listen(port, collections, events, options)` method takes in a port, a list of instantiated collections, and a list of event objects.  It returns a hash containing `webSocket` and `express` which contain the raw `webSocket` and `express` servers.  The options parameter can take the following options:
+
+* `static` - boolean, defaults to true.  If false, Omni.js will not serve your `/public` folder automatically.
 
 
 # Connection Properties
@@ -158,6 +160,12 @@ Hop on `#omni.js` on `irc.freenode.net` to discuss Omni.js, or to ask questions.
 
 
 # Changelogs
+v0.0.11
+
+* Remove leaked events on client
+* Fix leak on server
+* Add options parameter to Omni.listen(), currently with just the `static` option.
+
 v0.0.10
 
 * Lock versions for dependencies
