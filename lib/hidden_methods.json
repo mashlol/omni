@@ -1,0 +1,22 @@
+{
+    "collection": [
+        "constructor", "model", "createPermission", "destroyPermission", "_all", "toJSON", "on",
+        "once", "off", "trigger", "stopListening", "listenTo", "listenToOnce", "bind", "unbind",
+        "initialize", "sync", "add", "remove", "set", "reset", "push", "pop", "unshift", "shift",
+        "slice", "get", "at", "where", "findWhere", "sort", "sortedIndex", "pluck", "fetch",
+        "create", "parse", "clone", "_reset", "_prepareModel", "_removeReference",
+        "_onModelEvent", "forEach", "each", "map", "collect", "reduce", "foldl", "inject",
+        "reduceRight", "foldr", "find", "detect", "filter", "select", "reject", "every", "all",
+        "some", "any", "include", "contains", "invoke", "max", "min", "toArray", "size", "first",
+        "head", "take", "initial", "rest", "tail", "drop", "last", "without", "indexOf",
+        "shuffle", "lastIndexOf", "isEmpty", "chain", "groupBy", "countBy", "sortBy", "extend",
+        "__super__", "name", "_createPacket"
+    ], "model": [
+        "constructor", "name", "defaults", "readPermission", "writePermission", "_properties",
+        "toJSON", "on", "once", "off", "trigger", "stopListening", "listenTo", "listenToOnce",
+        "bind", "unbind", "changed", "validationError", "idAttribute","initialize", "sync",
+        "get", "escape", "has", "set", "unset", "clear", "hasChanged", "changedAttributes",
+        "previous", "previousAttributes", "fetch", "save", "destroy", "url", "parse", "clone",
+        "isNew", "isValid", "_validate", "keys", "values", "pairs", "invert", "pick", "omit"
+    ]
+}
