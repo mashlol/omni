@@ -9,8 +9,9 @@ npm install omni
 ```
 
 # Example Apps
-https://github.com/Mashlol/omni-chat-example - a very simple of example of how to use Omni.js effectively. - Demo: http://chat.kevinbedi.com
-https://github.com/Mashlol/omni-arena - a much more complex usage of Omni.js, building a realtime HTML5 arena game. - Demo: http://arena.kevinbedi.com
+
+* https://github.com/Mashlol/omni-chat-example - a very simple of example of how to use Omni.js effectively. - Demo: http://chat.kevinbedi.com
+* https://github.com/Mashlol/omni-arena - a much more complex usage of Omni.js, building a realtime HTML5 arena game. - Demo: http://arena.kevinbedi.com
 
 
 # Usage
