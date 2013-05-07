@@ -1,7 +1,7 @@
 # Omni.js
 ![Omni.js](http://i.imgur.com/S1C8rDt.png)
 
-Omni.js is a framework designed to make building real-time apps with Backbone.js extremely easy.  Simply define models, collections, and events on the server, and when a client connects it will automatically be def all of the information it has permission to see.  Using the same Backbone.js interface from the client, you can then update the models and collections directly, and all of the new information will be propagated by the server to any other clients who have permission to see these new changes.  You can define who has permission to read and write to models, and who has permission to add and remove models from collections.
+Omni.js is a framework designed to make building real-time apps with Backbone.js extremely easy.  Simply define models, collections, and events on the server, and when a client connects it will automatically be given all of the information it has permission to see.  Using Backbone.js from the client, you can then update the models and collections directly (i.e. `Omni.collections.players.findWhere({name: "Jim"}).set("x", 10);`, and all of the new information will be propagated by the server to any other clients who have permission to see these changes.  You can define who has permission to read and write to models, and who has permission to add and remove models from collections.
 
 # Installation
 ```sh
