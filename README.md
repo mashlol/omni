@@ -1,18 +1,16 @@
 # Omni.js
 ![Omni.js](http://i.imgur.com/S1C8rDt.png)
 
-Omni.js is a framework designed to integrate with Backbone.js in order to make writing real-time web apps extremely simple.  Simply define models, collections, and events on the server side, and the server will automatically feed the client with all of the information that it has permission to see.  Then the client can modify any information, and if it has write permission, the server will propagate the data to all other clients who have read permission.
-
+Omni.js is a framework designed to make building real-time apps with Backbone.js extremely easy.  Simply define models, collections, and events on the server, and when a client connects it will automatically be def all of the information it has permission to see.  Using the same Backbone.js interface from the client, you can then update the models and collections directly, and all of the new information will be propagated by the server to any other clients who have permission to see these new changes.  You can define who has permission to read and write to models, and who has permission to add and remove models from collections.
 
 # Installation
 ```sh
 npm install omni
 ```
 
-
 # Example Apps
-https://github.com/Mashlol/omni-chat-example - see a very simple of example of how to use Omni.js effectively.
-https://github.com/Mashlol/omni-arena - a much more complex usage of Omni.js, building a realtime HTML5 arena game.
+https://github.com/Mashlol/omni-chat-example - a very simple of example of how to use Omni.js effectively. - Demo: http://chat.kevinbedi.com
+https://github.com/Mashlol/omni-arena - a much more complex usage of Omni.js, building a realtime HTML5 arena game. - Demo: http://arena.kevinbedi.com
 
 
 # Usage
@@ -80,6 +78,8 @@ A model is essentially the same as a model in Backbone, however a `readPermissio
 
 The `readPermission()` method should return a value even if the `property` parameter is not passed in.  The result of the method should be whether or not ANY attributes will be available.  The method is called with only the `connection` parameter before checking each property individually, as if it returns false we won't need to iterate over all of the parameters.  The `connection` parameter should be always be passed in, however.
 
+All of the methods and properties you define in a model will also be propagated to the client.  Prefix properties with an "_" if you wish to keep them on the server only.  The `readPermission` and `writePermission` methods are kept on the server only.  All of the backbone methods are also kept on the server, so overriding native Backbone methods is currently not possible on the client, but should still work on the server.
+
 
 # Collections
 ```javascript
@@ -99,6 +99,8 @@ var Players = Omni.Collection.extend({
 });
 ```
 A collection is essentially the same collection as Backbone, however a `createPermission(connection)` and `destroyPermission(connection)` method can be supplied to determine whether or not there is permission to add or remove models to/from this collection.
+
+All of the methods and properties you define in a collection will also be propagated to the client.  Prefix properties with an "_" if you wish to keep them on the server only.  The `createPermission` and `destroyPermission` methods are kept on the server only.  All of the backbone methods are also kept on the server, so overriding native Backbone methods is currently not possible on the client, but should still work on the server.
 
 
 # Events
