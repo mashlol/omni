@@ -166,7 +166,7 @@ Hop on `#omni.js` on `irc.freenode.net` to discuss Omni.js, or to ask questions.
 v0.1.0
 
 * Methods and properties from models and collections now propagate to the client.  This does not include overridden Backbone methods.  Any method prefixed with "_" is kept private to the server.
-* Fixed serving of /public with no options param - Thanks to `evanbarter` for this fix!
+* Fixed serving of /public with no options param - Thanks to [@evanbarter](https://github.com/evanbarter) for this fix!
 
 v0.0.11
 
