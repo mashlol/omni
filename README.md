@@ -31,6 +31,7 @@ Omni.listen(3000, {
 The `.listen(port, collections, events, options)` method takes in a port, a list of instantiated collections, and a list of event objects.  It returns a hash containing `webSocket` and `express` which contain the raw `webSocket` and `express` servers.  The options parameter can take the following options:
 
 * `static` - boolean, defaults to true.  If false, Omni.js will not serve your `/public` folder automatically.
+* `development` - boolean, defaults to false.  If true, Omni.js will serve the client javascript unminified.
 
 
 # Connection Properties
@@ -164,6 +165,11 @@ Hop on `#omni.js` on `irc.freenode.net` to discuss Omni.js, or to ask questions.
 
 
 # Changelogs
+v0.1.1
+
+* Add new option `development` which if true will serve the client javascript unminified.
+* The url property for collections and models is now hidden from the client, defaults from models are now shown to the client.
+
 v0.1.0
 
 * Methods and properties from models and collections now propagate to the client.  This does not include overridden Backbone methods.  Any method prefixed with "_" is kept private to the server.
