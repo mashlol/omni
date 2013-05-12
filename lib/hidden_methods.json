@@ -10,13 +10,14 @@
         "some", "any", "include", "contains", "invoke", "max", "min", "toArray", "size", "first",
         "head", "take", "initial", "rest", "tail", "drop", "last", "without", "indexOf",
         "shuffle", "lastIndexOf", "isEmpty", "chain", "groupBy", "countBy", "sortBy", "extend",
-        "__super__", "name", "_createPacket"
+        "__super__", "name", "_createPacket", "defaults"
     ], "model": [
         "constructor", "name", "url", "readPermission", "writePermission", "_properties",
         "toJSON", "on", "once", "off", "trigger", "stopListening", "listenTo", "listenToOnce",
         "bind", "unbind", "changed", "validationError", "idAttribute","initialize", "sync",
         "get", "escape", "has", "set", "unset", "clear", "hasChanged", "changedAttributes",
         "previous", "previousAttributes", "fetch", "save", "destroy", "url", "parse", "clone",
-        "isNew", "isValid", "_validate", "keys", "values", "pairs", "invert", "pick", "omit"
+        "isNew", "isValid", "_validate", "keys", "values", "pairs", "invert", "pick", "omit",
+        "defaults"
     ]
 }
