@@ -165,6 +165,11 @@ Hop on `#omni.js` on `irc.freenode.net` to discuss Omni.js, or to ask questions.
 
 
 # Changelogs
+v0.2.0
+
+* Add the concept of OIDs, which are used internally by Omni to keep objects in sync with clients.  This way, when clients add new models, they can still update their attributes without having to assign an ID.  The server can also assign an ID after saving to a database, and the client will be updated based on the models OID.
+* No longer reset collections when connection.recheckAllPermissions() is called.  This way there is no need for updating references on the client every time the permissions are rechecked.
+
 v0.1.1
 
 * Add new option `development` which if true will serve the client javascript unminified.
