@@ -13,13 +13,17 @@
     "backbone": "1.0.0",
     "uglify-js": "2.2.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*",
+    "sinon": "*"
+  },
   "optionalDependencies": {},
   "engines": {
     "node": "*"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test"
   },
   "license": "MIT"
 }
