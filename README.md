@@ -35,7 +35,7 @@ The `.listen(port, collections, events, options)` method takes in a port, a list
 
 
 # Connection Properties
-`connection.recheckAllPermissions()` - This method can be called on any `connection` object that is passed between the permissions and event methods, and will run through each collection and each model and check if there are any changes in the permissions, and push the changes to the client.  This is useful for instances where a change in one model might trigger some permission changes in another model or collection.  For example, if a user has permission to read all other users in the same "room" as them, and you change that users room, you need to call this event to propagate all the new players they might be able to see, and remove all the old players they can no longer see.  Note that this is a relatively intense method, use it wisely.
+`connection.sync()` - This method can be called on any `connection` object that is passed between the permissions and event methods, and will run through each collection and each model and check if there are any changes in the permissions, and push the changes to the client.  This is useful for instances where a change in one model might trigger some permission changes in another model or collection.  For example, if a user has permission to read all other users in the same "room" as them, and you change that users room, you need to call this event to propagate all the new players they might be able to see, and remove all the old players they can no longer see.  Note that this is a relatively intense method, use it wisely.
 
 `connection.socket` - The raw socket.io socket object associated with this connection.
 
@@ -153,7 +153,7 @@ The omni.js file automatically gives you the following:
 
 `Omni.ready(callback)` - You can call `Omni.ready()` any number of times, providing callbacks.  When Omni has downloaded the initial data from the server, these callbacks will be executed.  If you call `Omni.ready()` after Omni has already initialized, your callback will be called immediately.
 
-`Omni.on(eventName, callback)` - Add a callback for a certain client sided event.  Currently the only event is `recheckPermissions`, triggered when the server calls `connection.recheckAllPermissions()` on this client's connection.
+`Omni.on(eventName, callback)` - Add a callback for a certain client sided event.  Currently the only event is `sync`, triggered when the server calls `connection.sync()` on this client's connection.
 
 
 # Contributing
