@@ -8,4 +8,3 @@ notifications:
   irc:
     channels:
       - "irc.freenode.org#omni.js"
-    skip_join: true
