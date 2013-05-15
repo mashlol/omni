@@ -157,7 +157,7 @@ The omni.js file automatically gives you the following:
 
 
 # Contributing
-Feel free to contribute fixes, features or refactors.  Just fork & submit a pull request.  Please make sure the test suite passes, and update it if need be.
+Feel free to contribute fixes, features or refactors.  Just fork & submit a pull request.  Please make sure the tests pass, and to update them if need be.
 
 
 # IRC
@@ -165,7 +165,7 @@ Hop on `#omni.js` on `irc.freenode.net` to discuss Omni.js, or to ask questions.
 
 
 # Testing
-Run `make test` or `npm test` to run the test suite.
+Run `make test` or `npm test` to run the tests.
 
 
 # Changelogs
