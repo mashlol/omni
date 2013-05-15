@@ -4,6 +4,8 @@ node_js:
   - "0.11"
 
 notifications:
+  email: false
   irc:
     channels:
       - "irc.freenode.org#omni.js"
+    skip_join: true
