@@ -5,8 +5,12 @@ var path = require("path");
 
 describe("Omni", function() {
     it("should export Omni.Model and Omni.Collection", function() {
-        Omni.Model.should.equal(require("../lib/model"));
-        Omni.Collection.should.equal(require("../lib/collection"));
+        // TODO find a better way to test for these
+        Omni.Collection.prototype.should.have.property("createPermission");
+        Omni.Collection.prototype.should.have.property("destroyPermission");
+
+        Omni.Model.prototype.should.have.property("readPermission");
+        Omni.Model.prototype.should.have.property("writePermission");
     });
 
     it("should export a listen method", function() {

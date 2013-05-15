@@ -15,7 +15,9 @@ describe("Omni.Collection", function() {
     });
 
     it("should set model to Omni.Model", function() {
-        collection.should.have.property("model", Omni.Model);
+        // TODO find a better way to test this
+        collection.__proto__.model.prototype.should.have.property("readPermission");
+        collection.__proto__.model.prototype.should.have.property("writePermission");
     });
 
     it("should set OIDs and add listeners on construct", function() {
