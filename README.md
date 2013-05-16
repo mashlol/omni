@@ -37,6 +37,9 @@ The `.listen(port, collections, events, options)` method takes in a port, a list
 * `development` - boolean, defaults to false.  If true, Omni.js will serve the client javascript unminified.
 
 
+There is also a list of collections available on the Omni object, `Omni.collections`, which should work the same on both the client and the server.  This way, within models and collections, you can use `Omni.collections` to keep code working on both the client and server.  The `Omni.collections` object is only set after you have called `Omni.listen()`.
+
+
 # Connection Properties
 `connection.sync()` - This method can be called on any `connection` object that is passed between the permissions and event methods, and will run through each collection and each model and check if there are any changes in the permissions, and push the changes to the client.  This is useful for instances where a change in one model might trigger some permission changes in another model or collection.  For example, if a user has permission to read all other users in the same "room" as them, and you change that users room, you need to call this event to propagate all the new players they might be able to see, and remove all the old players they can no longer see.  Note that this is a relatively intense method, use it wisely.
 
@@ -84,7 +87,7 @@ A model is essentially the same as a model in Backbone, however a `readPermissio
 
 The `readPermission()` method should return a value even if the `property` parameter is not passed in.  The result of the method should be whether or not ANY attributes will be available.  The method is called with only the `connection` parameter before checking each property individually, as if it returns false we won't need to iterate over all of the parameters.  The `connection` parameter should be always be passed in, however.
 
-All of the methods and properties you define in a model will also be propagated to the client.  Prefix properties with an "_" if you wish to keep them on the server only.  The `readPermission` and `writePermission` methods are kept on the server only.  All of the backbone methods are also kept on the server, so overriding native Backbone methods is currently not possible on the client, but should still work on the server.
+All of the methods and properties you define in a model will also be propagated to the client.  Prefix properties with an "_" if you wish to keep them on the server only.  The `readPermission` and `writePermission` methods are kept on the server only.  All of the backbone methods are also kept on the server, so overriding native Backbone methods is currently not possible on the client, but should still work on the server.  If you wish to access or modify collections, use `Omni.collections` as this will work on both the client and the server.
 
 
 # Collections
@@ -106,7 +109,7 @@ var Players = Omni.Collection.extend({
 ```
 A collection is essentially the same collection as Backbone, however a `createPermission(connection)` and `destroyPermission(connection)` method can be supplied to determine whether or not there is permission to add or remove models to/from this collection.
 
-All of the methods and properties you define in a collection will also be propagated to the client.  Prefix properties with an "_" if you wish to keep them on the server only.  The `createPermission` and `destroyPermission` methods are kept on the server only.  All of the backbone methods are also kept on the server, so overriding native Backbone methods is currently not possible on the client, but should still work on the server.
+All of the methods and properties you define in a collection will also be propagated to the client.  Prefix properties with an "_" if you wish to keep them on the server only.  The `createPermission` and `destroyPermission` methods are kept on the server only.  All of the backbone methods are also kept on the server, so overriding native Backbone methods is currently not possible on the client, but should still work on the server.  If you wish to access or modify collections, use `Omni.collections` as this will work on both the client and the server.
 
 
 # Events
@@ -150,7 +153,7 @@ Everything you should need should be readily available to access on the client. 
 
 The omni.js file automatically gives you the following:
 
-`Omni.Collections (alias: window.Collections)` - All the collections you defined on the server and passed into the `listen` method are automatically available in the global `Collections` object on the client, provided they have permission to see it.  If I passed in a collection to the server with `Omni.listen(1337, {messages: new Omni.Collection()});`, I'd be able to access this collection on the client with `Collections.messages`.  Then I can do things like `Collections.messages.add({message: "Hello!"})` and the server will propagate this new message to all clients who have permission to see it.
+`Omni.collections (alias: window.Collections)` - All the collections you defined on the server and passed into the `listen` method are automatically available in the global `Collections` object on the client, provided they have permission to see it.  If I passed in a collection to the server with `Omni.listen(1337, {messages: new Omni.Collection()});`, I'd be able to access this collection on the client with `Collections.messages`.  Then I can do things like `Collections.messages.add({message: "Hello!"})` and the server will propagate this new message to all clients who have permission to see it.
 
 `Omni.trigger(eventName, args, callback)` - This is how you trigger custom events.  Once you trigger this custom event, the server will execute the code that you wrote inside the `event hash` with the name `eventName`.  For example, with the `loginEvent` defined above, if the client sends `Omni.trigger("loginEvent", {name: "foo", password: "bar"});`, assuming a user with the name "foo" and password "bar" exists, it will set connection.player to that player model.  This allows for the server to change the permissions of this user now, maybe to allow them to modify their own model more freely, or grant admin access, or other actions.  The callback takes in a single parameter, which is the response hash.
 
@@ -177,6 +180,12 @@ Run `make test` or `npm test` to run the tests.
 
 
 # Changelogs
+v0.2.1
+
+* Add tests
+* Add alias for `recheckAllPermissions()` to be `sync()` or `resync()`
+* Add `Omni.collections` on the server.
+
 v0.2.0
 
 * Add the concept of OIDs, which are used internally by Omni to keep objects in sync with clients.  This way, when clients add new models, they can still update their attributes without having to assign an ID.  The server can also assign an ID after saving to a database, and the client will be updated based on the models OID.
