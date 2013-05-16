@@ -180,6 +180,10 @@ Run `make test` or `npm test` to run the tests.
 
 
 # Changelogs
+v0.2.2
+
+* Fix typo/bug causing `sync()` to be called every connect.
+
 v0.2.1
 
 * Add tests
