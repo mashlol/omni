@@ -34,6 +34,7 @@ describe("Omni", function() {
         var socketIoOnStub;
 
         var collection;
+        var collections;
         var testEvent;
         var disconnectEvent;
         var connectEvent;
@@ -90,7 +91,9 @@ describe("Omni", function() {
                 run: sinon.spy()
             };
 
-            server = Omni.listen(3000, {collection: collection}, {
+            collections = {collection: collection};
+
+            server = Omni.listen(3000, collections, {
                 testEvent: testEvent,
                 disconnect: disconnectEvent,
                 connect: connectEvent
@@ -108,6 +111,10 @@ describe("Omni", function() {
 
         it("should return a socketio server", function() {
             server.webSocket.should.equal(socketIoServerStub);
+        });
+
+        it("should have Omni.collections set to the collections object we gave it", function() {
+            Omni.collections.should.equal(collections);
         });
 
         it("should serve /public folder", function() {
