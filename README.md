@@ -180,6 +180,10 @@ Run `make test` or `npm test` to run the tests.
 
 
 # Changelogs
+v0.2.4
+
+* Quick bugfix
+
 v0.2.3
 
 * Fix client bug on sync which was adding listeners multiple times
