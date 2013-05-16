@@ -180,6 +180,11 @@ Run `make test` or `npm test` to run the tests.
 
 
 # Changelogs
+v0.2.3
+
+* Fix client bug on sync which was adding listeners multiple times
+* make sure change event is not triggered on the client when an objects oid and defaults are set by the server
+
 v0.2.2
 
 * Fix typo/bug causing `sync()` to be called every connect.
