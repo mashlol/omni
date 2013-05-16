@@ -36,7 +36,7 @@ The `.listen(port, collections, events, options)` method takes in a port, a list
 * `development` - boolean, defaults to false.  If true, Omni.js will serve the client javascript unminified.
 
 
-There is also a list of collections available on the Omni object, `Omni.collections`, which should work the same on both the client and the server.  This way, within models and collections, you can use `Omni.collections` to keep code working on both the client and server.
+There is also a list of collections available on the Omni object, `Omni.collections`, which should work the same on both the client and the server.  This way, within models and collections, you can use `Omni.collections` to keep code working on both the client and server.  The `Omni.collections` object is only set after you have called `Omni.listen()`.
 
 
 # Connection Properties
