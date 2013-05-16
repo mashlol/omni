@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Mashlol/omni.png?branch=master)](https://travis-ci.org/Mashlol/omni)
 
+
 [![ScreenShot](http://i.imgur.com/5ONLYhK.png)](http://youtu.be/2UPGrQgLJqQ)
 
 Omni.js is a framework designed to make building real-time apps with Backbone.js extremely easy.  Simply define models, collections, and events on the server, and when a client connects it will automatically be given all of the information it has permission to see.  Using Backbone.js from the client, you can then update the models and collections directly (i.e. `Omni.collections.players.findWhere({name: "Jim"}).set("x", 10);`, and all of the new information will be propagated by the server to any other clients who have permission to see these changes.  You can define who has permission to read and write to models, and who has permission to add and remove models from collections.
@@ -156,6 +157,11 @@ The omni.js file automatically gives you the following:
 `Omni.ready(callback)` - You can call `Omni.ready()` any number of times, providing callbacks.  When Omni has downloaded the initial data from the server, these callbacks will be executed.  If you call `Omni.ready()` after Omni has already initialized, your callback will be called immediately.
 
 `Omni.on(eventName, callback)` - Add a callback for a certain client sided event.  Currently the only event is `sync`, triggered when the server calls `connection.sync()` on this client's connection.
+
+
+# A note on persistance
+
+Omni.js does nothing to interface with any databases, and so there is currently no persistance by default.  You can, however, use Backbone's methods just like you would normally to persist objects.  Unfortunately Backbone relies on jQuery or Zepto for this, using `$.ajax` to fetch information from the server.  In order to get the Backbone methods that use `$.ajax` to work with Omni.js, you need to set `Backbone.$` to an object with has an `ajax` method.  E.g. `require("backbone").$ = require("jquery");`  Then you can use methods like `Collection.fetch()` or `Model.save()`, or any other persistance method just like normal.
 
 
 # Contributing
