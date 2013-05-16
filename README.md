@@ -174,6 +174,12 @@ Run `make test` or `npm test` to run the tests.
 
 
 # Changelogs
+v0.2.1
+
+* Add tests
+* Add alias for `recheckAllPermissions()` to be `sync()` or `resync()`
+* Add `Omni.collections` on the server.
+
 v0.2.0
 
 * Add the concept of OIDs, which are used internally by Omni to keep objects in sync with clients.  This way, when clients add new models, they can still update their attributes without having to assign an ID.  The server can also assign an ID after saving to a database, and the client will be updated based on the models OID.
