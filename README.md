@@ -16,6 +16,7 @@ npm install omni
 
 * https://github.com/Mashlol/omni-chat-example - a very simple of example of how to use Omni.js effectively. - Demo: http://chat.kevinbedi.com
 * https://github.com/Mashlol/omni-arena - a much more complex usage of Omni.js, building a realtime HTML5 arena game. - Demo: http://arena.kevinbedi.com
+* https://github.com/jasmeeto/sketch-server - an online canvas-based sketch pad that syncs to all users in real-time. - Demo: http://sketch-server.herokuapp.com/
 
 
 # Usage
