@@ -181,6 +181,10 @@ Run `make test` or `npm test` to run the tests.
 
 
 # Changelogs
+v0.2.5
+
+* Fix removing models from collections
+
 v0.2.4
 
 * Quick bugfix
