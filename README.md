@@ -181,6 +181,10 @@ Run `make test` or `npm test` to run the tests.
 
 
 # Changelogs
+v0.2.6
+
+* Fix server listeners for model changes not triggering client updates for the client who triggered the server update 
+
 v0.2.5
 
 * Fix removing models from collections
